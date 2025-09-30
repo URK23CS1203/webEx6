@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bakery Delight</title>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f9f3ee;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background: #5c3d2e;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 22px;
+      font-weight: bold;
+    }
+    .cakes {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 900px;
+      margin: auto;
+    }
+    .cake {
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    .cake img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+    .cake p {
+      margin: 10px;
+      font-weight: bold;
+    }
+    .order-box {
+      max-width: 400px;
+      margin: 30px auto;
+      padding: 20px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+    }
+    .order-box h3 {
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin: 8px 0 5px;
+      font-size: 14px;
+    }
+    input[type="number"] {
+      width: 70px;
+      padding: 5px;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+    button {
+      display: block;
+      margin: 15px auto;
+      padding: 10px 20px;
+      font-size: 15px;
+      background: #b5651d;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      text-align: center;
+      margin-top: 10px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">🥖 Bakery Delight 🥐</div>
+
+  <div class="cakes">
+    <div class="cake">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQkqqEZUek69FQui7a4RC_5sBhz0lvgkKUFcw&s" alt="Rainbow Cake">
+      <p>Rainbow Cake – Rs. 300</p>
+    </div>
+    <div class="cake">
+      <img src="https://www.warmoven.in/cdn/shop/files/duel-delight-chocolate_-cake.jpg?v=1749833568&width=1080" alt="Chocolate Cake">
+      <p>Chocolate Cake – Rs. 200</p>
+    </div>
+    <div class="cake">
+      <img src="https://www.warmoven.in/cdn/shop/files/heartfelt_red_velvet_cake.jpg?v=1749833349&width=1080" alt="Red Velvet Cake">
+      <p>Red Velvet Cake – Rs. 250</p>
+    </div>
+    <div class="cake">
+      <img src="https://cakebee.in/cdn/shop/files/DSC06157_600x.jpg?v=1703588115" alt="Black Forest Cake">
+      <p>Black Forest Cake – Rs. 350</p>
+    </div>
+  </div>
+
+  <div class="order-box">
+    <h3>Place Your Order</h3>
+    <label for="rainbow">Rainbow Cake (Qty):</label>
+    <input type="number" id="rainbow" value="0" min="0">
+
+    <label for="choco">Chocolate Cake (Qty):</label>
+    <input type="number" id="choco" value="0" min="0">
+
+    <label for="redvelvet">Red Velvet Cake (Qty):</label>
+    <input type="number" id="redvelvet" value="0" min="0">
+
+    <label for="blackforest">Black Forest Cake (Qty):</label>
+    <input type="number" id="blackforest" value="0" min="0">
+
+    <button id="orderBtn">Confirm Order</button>
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    $(document).ready(function(){
+      $("#orderBtn").click(function(){
+        let prices = { rainbow: 300, choco: 200, redvelvet: 250, blackforest: 350 };
+        let total = (parseInt($("#rainbow").val()) || 0) * prices.rainbow
+                  + (parseInt($("#choco").val()) || 0) * prices.choco
+                  + (parseInt($("#redvelvet").val()) || 0) * prices.redvelvet
+                  + (parseInt($("#blackforest").val()) || 0) * prices.blackforest;
+
+        if(total > 0){
+          $("#result").html("✅ Your bill is Rs. " + total);
+        } else {
+          $("#result").html("⚠️ Please order at least one cake.");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
